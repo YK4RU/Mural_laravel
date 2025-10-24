@@ -14,4 +14,16 @@
             </div>
         </div>
     </div>
+    <section>
+            <div id="botao_criar_postagem">
+                <button>@yield('criar')</button>       
+            </div>
+    </section>
+    <section>
+            <div id="botao_criar_postagem">
+                <p>
+                    <a href="{{ route('posts.create')}}"><img src="{{ asset('build/assets/imagens/botao_criar.png') }}" alt="criar" id="botao_criar_postagem_A"></a>
+                </p>     
+            </div>
+    </section>
 </x-app-layout>
