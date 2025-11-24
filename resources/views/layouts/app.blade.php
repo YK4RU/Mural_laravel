@@ -1,36 +1,48 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ config('app.name', 'Müral') }}</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<body class="bg-[#FFFEF2] flex h-screen">
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+    <aside class="w-28 bg-[#FFF9BD] flex flex-col items-center py-8">
+        <div class="fixed">
+            <div class="text-3xl font-bold text-red-700 mb-8">Müral</div>
+            <nav class="flex flex-col items-center space-y-10 mt-8">
+                <a href="{{ route('dashboard') }}">
+                    <img src="{{ asset('build/assets/imagens/casa.png') }}" alt="home" class="w-10 h-10">
+                </a>
+                <a href="#">
+                    <img src="{{ asset('build/assets/imagens/mensagem.png') }}" alt="mensagem" class="w-10 h-10">
+                </a>
+                <a href="#">
+                    <img src="{{ asset('build/assets/imagens/sino_notificacao.png') }}" alt="sino" class="w-10 h-10">
+                </a>
+                <a href="{{ route('profile.index') }}">
+                    <img src="{{ asset('build/assets/imagens/perfil.png') }}" alt="perfil" class="w-10 h-10">
+                </a>
+            </nav>
         </div>
-    </body>
+    </aside>
+
+    <main class="flex-1 p-6 relative">
+        <header class="flex justify-end mb-6">
+            <div class="relative">
+                <input type="text" placeholder="Pesquisar..." class="rounded-full border border-yellow-300 pl-4 pr-10 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                <span class="absolute right-3 top-2.5 text-yellow-500">
+                    <img src="{{ asset('build/assets/imagens/search.png') }}" alt="search" class="w-5 h-5">
+                </span>
+            </div>
+        </header>
+        <div>
+            {{ $slot }}
+        </div>
+    </main>
+
+</body>
 </html>
