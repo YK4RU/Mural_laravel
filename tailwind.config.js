@@ -19,3 +19,15 @@ export default {
 
     plugins: [forms],
 };
+
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        primary: '#FFFEF2',
+        accent: '#FFF9BD',
+        textRed: '#8C0000'
+      }
+    }
+  }
+}
