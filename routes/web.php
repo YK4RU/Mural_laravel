@@ -2,15 +2,24 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\CommentOfcommentController;
+use App\Http\Controllers\PastaController;
+use App\Http\Controllers\ChatController;
+use App\Http\Controllers\DashController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashController::class, 'index'])->name('dashboard');
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/profile/index', [ProfileController::class, 'index'])->middleware(['auth', 'verified'])->name('profile.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -21,10 +30,9 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 //Posts CRUD
-
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 
-Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+Route::get('/posts/create', [PostController::class, 'create'])->middleware(['auth', 'verified'])->name('posts.create');
 Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
 Route::put('/posts/{id}', [PostController::class, 'update'])->name('posts.update');

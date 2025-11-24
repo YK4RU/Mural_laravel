@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('url_da_imagem');
-            $table->string('descrição');
+            $table->string('descricao');
             $table->timestamps();
         });
     }

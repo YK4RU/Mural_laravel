@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('url_da_imagem_do_user')->default('perfil_default.png');
+            $table->string('url_da_imagem_do_banner')->default('banner_default.png');
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

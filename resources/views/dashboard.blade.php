@@ -1,29 +1,15 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
-        </div>
+    <div>
+        @include('posts.index')
     </div>
-    <section>
-            <div id="botao_criar_postagem">
-                <button>@yield('criar')</button>       
-            </div>
-    </section>
-    <section>
-            <div id="botao_criar_postagem">
-                <p>
-                    <a href="{{ route('posts.create')}}"><img src="{{ asset('build/assets/imagens/botao_criar.png') }}" alt="criar" id="botao_criar_postagem_A"></a>
-                </p>     
-            </div>
-    </section>
+    <div class="relative">
+        <div class="z-20 fixed right-10 bottom-10">
+            <button>
+                <a href="{{ route('posts.create') }}">
+                    <img src="{{ asset('build/assets/imagens/botao_criar.png') }}" alt="botao" class="w-15 h-15">
+                </a>
+            </button>
+        </div>
+    </div>   
 </x-app-layout>
+    

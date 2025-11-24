@@ -3,15 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\models\Post;
 
 class PostController extends Controller
 {
+    public readonly Post $posts;
+
+    public function __construct()
+    {
+        $this->posts = new Post();
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $posts = Post::all();
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -19,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -27,7 +36,22 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $image = $request->file('url_da_imagem')->store('postagens', 'public');
+
+        $created = Post::create ([
+
+            'descricao'=> $request->input('descricao'),
+            'url_da_imagem'=> $image,
+           
+        ]);
+
+
+        if ($created){
+            return redirect()->route('dashboard')->with('message', 'deu certo Ü');
+        }else{
+            return redirect()->back()->with('message', 'deu certo não Ü');
+        }
     }
 
     /**
