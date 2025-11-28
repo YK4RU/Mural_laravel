@@ -67,22 +67,31 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $posts = Post::findOrFail($id);
+        return view('posts.edit', compact('posts'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update(Request $request, string $id)
     {
-        //
+        $posts = Post::findOrFail($id);
+        $updated = $posts->update([
+            'descricao' => $request->descricao
+        ]);
+
+        if ($updated){
+            return redirect()->route('profile.index')->with('message', 'deu certo Ü');
+        }else{
+            return redirect()->back()->with('message', 'deu certo não Ü');
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    
     public function destroy(string $id)
     {
-        //
+        $posts = Post::findOrFail($id);
+        $deleted = $posts->delete();
+
+        return redirect()->route('profile.index')->with('message', 'massa doido Ü');;
     }
 }
