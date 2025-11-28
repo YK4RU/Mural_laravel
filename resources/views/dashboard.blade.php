@@ -1,6 +1,6 @@
 <x-app-layout>
     <div>
-        @include('posts.index')
+        @include('posts.listagem')
     </div>
     <div class="relative">
         <div class="z-20 fixed right-10 bottom-10">
