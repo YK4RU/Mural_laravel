@@ -26,6 +26,9 @@
                 <a href="{{ route('profile.index') }}">
                     <img src="{{ asset('build/assets/imagens/perfil.png') }}" alt="perfil" class="w-10 h-10">
                 </a>
+                <div class="fixed bottom-10">
+                    <img src="{{ asset('build/assets/imagens/flor.png') }}" alt="flor" class="w-10 h-10">
+                </div>
             </nav>
         </div>
     </aside>
