@@ -4,7 +4,12 @@
             {{ __('Profile') }}
         </h2>
     </x-slot>
-    <div>
+    <div class="fixed right-50 top-50">
         <a href="{{ route('profile.edit') }}">Editar</a>
+    </div>
+    <div>
+        <div>
+            @include('posts.index')
+        </div>
     </div>
 </x-app-layout>
